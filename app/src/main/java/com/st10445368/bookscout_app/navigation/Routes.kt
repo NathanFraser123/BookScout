@@ -10,6 +10,9 @@ import kotlinx.serialization.Serializable
 @Serializable object SearchRoute
 @Serializable object SettingsRoute
 
+@Serializable
+data class DetailRoute(val bookId: String)
+
 // Structured object to map destinations to the Bottom Bar UI elements
 sealed class BottomBarItem<T : Any>(
     val route: T,
