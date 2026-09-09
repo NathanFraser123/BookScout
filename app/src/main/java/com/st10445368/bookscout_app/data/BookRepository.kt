@@ -12,6 +12,14 @@ import retrofit2.HttpException
 
 class BookRepository(private val apiService: OpenLibraryApiService) {
 
+    fun normaliseQuery(query: String): String {
+        return query.trim()
+    }
+
+    fun isValidQuery(query: String): Boolean {
+        return normaliseQuery(query).isNotBlank()
+    }
+
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     suspend fun searchBooks(query: String, page: Int): Result<List<Book>> {
         return try {
@@ -27,6 +35,3 @@ class BookRepository(private val apiService: OpenLibraryApiService) {
         }
     }
 }
-
-// Note: You will also need the OpenLibraryApiService interface we mentioned earlier
-// for this file to recognize "OpenLibraryApiService". Let me know if you need that snippet pasted here too!
